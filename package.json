@@ -25,5 +25,8 @@
     "@octokit/action": "^3.1.1",
     "@octokit/rest": "^18.0.6",
     "ws": "^7.3.1"
+  },
+  "devDependencies": {
+    "prettier": "2.1.2"
   }
 }

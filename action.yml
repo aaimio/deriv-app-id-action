@@ -1,23 +1,23 @@
-author: 'Aaron Imming'
-name: 'Deriv App ID Generator action'
-description: 'Automatically generate App IDs for Deriv.app after feature branch has been deployed.'
+author: "Aaron Imming"
+name: "Deriv App ID Generator action"
+description: "Automatically generate App IDs for Deriv.app after feature branch has been deployed."
 inputs:
-    deriv_api_token:
-        description: 'Deriv API token'
-        required: true
-        default: ''
-    accept_edits_from_user:
-        description: 'Only accept comment edits from this user'
-        required: true
-        default: ''
-    max_retries:
-        description: 'Amount of times to retry generating an App ID'
-        required: false
-        default: 5
-    preview_url_regexp:
-        description: 'Regular expression pattern to look for (ensure first group containing the Preview URL)'
-        required: true
-        default: ''
+  deriv_api_token:
+    description: "Deriv API token"
+    required: true
+    default: ""
+  accept_edits_from_user:
+    description: "Only accept comment edits from this user"
+    required: true
+    default: ""
+  max_retries:
+    description: "Amount of times to retry generating an App ID"
+    required: false
+    default: 5
+  preview_url_regexp:
+    description: "Regular expression pattern to look for (ensure first group containing the Preview URL)"
+    required: true
+    default: ""
 runs:
-    using: 'node12'
-    main: 'dist/index.js'
+  using: "node12"
+  main: "dist/index.js"
