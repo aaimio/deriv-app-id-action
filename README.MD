@@ -14,10 +14,12 @@ The action retrieves all open PRs for the installed repository, it will then com
 
 The workflow expects a couple inputs:
 
-- `deriv_api_token`: Token used to authorise the websocket connection to Deriv.app. **Warning**: Make sure to pass the Deriv API token as a secret e.g. `${{ secrets.DERIV_API_TOKEN }}`.
 - `accept_edits_from_user`: Only consider edits from this user (default: `vercel[bot]`).
+- `DERIV_API_TOKEN`: The Deriv token to be used to generate App IDs. Please use a dedicated token. See https://app.deriv.com/account/api-token (pass as GitHub secret!)
+- `deriv_app_id`: The App ID to be used with Deriv API to identify the API connection to Deriv.
+- `GITHUB_TOKEN`: The GitHub token to be used with Octokit to identify the API connection to GitHub.
 - `max_retries` (optional): Amount of times to retry in case of error(s) (default: `5`).
-- `preview_url_regexp`: Regular expression pattern to look for (ensure first group containing the Preview URL).
+- `vercel_preview_url`: The Vercel deployment URL to generate an App ID for.
 
 ## Development
 
