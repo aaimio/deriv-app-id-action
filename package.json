@@ -12,7 +12,7 @@
     "*.{js,md}": "prettier --write"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "eslint .",
     "build": "npx ncc build index.js --license licenses.txt --minify"
   },
   "repository": {
@@ -34,6 +34,7 @@
     "ws": "^7.3.1"
   },
   "devDependencies": {
+    "eslint": "^7.10.0",
     "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
     "prettier": "2.1.2"
