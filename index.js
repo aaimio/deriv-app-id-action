@@ -117,12 +117,13 @@ class AppIdGenerator {
             const open_pull_requests = await this.getOpenPullRequests();
             if (!open_pull_requests) return reject();
 
-            this.api = new DerivAPI({
-                app_id: deriv_app_id,
-                connection: new WebSocket(
-                    `wss://frontend.binaryws.com/websockets/v3?app_id=${deriv_app_id}&brand=deriv&lang=EN`
-                ),
-            });
+            const websocket = new WebSocket(
+                `wss://frontend.binaryws.com/websockets/v3?app_id=${deriv_app_id}&brand=deriv&lang=EN`
+            );
+
+            websocket.addEventListener('error', warn);
+
+            this.api = new DerivAPI({ app_id: deriv_app_id, connection: websocket });
 
             const authorise = await this.authorise();
             if (!authorise) return reject();
