@@ -16,6 +16,7 @@ class AppIdGenerator {
             const authorise = await this.resolveApiRequest('authorize', {
                 authorize: core.getInput('DERIV_API_TOKEN'),
             });
+
             if (!authorise) return resolve(false);
 
             log('Done authorising.\n');
@@ -111,13 +112,13 @@ class AppIdGenerator {
         return new Promise(async (resolve, reject) => {
             const { issue } = github.context.payload;
             const preview_url = core.getInput('vercel_preview_url');
-            const deriv_app_id = core.getInput('deriv_app_id');
+            const deriv_app_id = Number(core.getInput('deriv_app_id'));
 
             const open_pull_requests = await this.getOpenPullRequests();
             if (!open_pull_requests) return reject();
 
             this.api = new DerivAPI({
-                app_id: Number(deriv_app_id),
+                app_id: deriv_app_id,
                 connection: new WebSocket(
                     `wss://frontend.binaryws.com/websockets/v3?app_id=${deriv_app_id}&brand=deriv&lang=EN`
                 ),
