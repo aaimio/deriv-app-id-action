@@ -26,7 +26,7 @@ class AppIdGenerator {
 
     createApp(app_options) {
         return new Promise(async (resolve) => {
-            log('Unable to find reusable App ID. Generating new one...');
+            log('Unable to find recyclable App ID. Generating new one...');
             log('App options', { ...app_options });
 
             const app_register = await this.resolveApiRequest('appRegister', {
@@ -112,7 +112,7 @@ class AppIdGenerator {
         return new Promise(async (resolve, reject) => {
             const { issue } = github.context.payload;
             const preview_url = core.getInput('vercel_preview_url');
-            const deriv_app_id = Number(core.getInput('deriv_app_id'));
+            const deriv_app_id = Number(core.getInput('DERIV_APP_ID'));
 
             const open_pull_requests = await this.getOpenPullRequests();
             if (!open_pull_requests) return reject();
@@ -161,7 +161,7 @@ class AppIdGenerator {
                 return apps.find((app) => app.github && !open_pull_requests_urls.includes(app.github));
             };
 
-            const reusable_app = app_to_recycle || getRecyclableApp();
+            const existing_app = app_to_recycle || getRecyclableApp();
             const stripped_app_title = issue.title.replace(/[^A-Za-z0-9 ]/g, '').substring(0, 35);
             const app_options = {
                 name: `${stripped_app_title} PR${issue.number}`,
@@ -170,8 +170,8 @@ class AppIdGenerator {
                 scopes: ['read', 'trade', 'trading_information', 'payments', 'admin'],
             };
 
-            const app = reusable_app
-                ? await this.updateApp(reusable_app.app_id, app_options)
+            const app = existing_app
+                ? await this.updateApp(existing_app.app_id, app_options)
                 : await this.createApp(app_options);
 
             if (!app) return reject();

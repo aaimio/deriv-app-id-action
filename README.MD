@@ -15,7 +15,7 @@ The action retrieves all open PRs for the installed repository, it will then com
 ### Inputs
 
 - `DERIV_API_TOKEN`: The Deriv token to be used to generate App IDs. Please use a dedicated token. See https://app.deriv.com/account/api-token (pass as GitHub secret!)
-- `deriv_app_id`: The App ID to be used with Deriv API to identify the API connection to Deriv.
+- `DERIV_APP_ID`: The App ID to be used with Deriv API to identify the API connection to Deriv.
 - `GITHUB_TOKEN`: The GitHub token to be used with Octokit to identify the API connection to GitHub.
 - `max_retries` (optional): Amount of times to retry in case of error(s) (default: `5`).
 - `vercel_preview_url`: The Vercel deployment URL to generate an App ID for.

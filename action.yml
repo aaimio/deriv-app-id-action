@@ -8,7 +8,7 @@ inputs:
   DERIV_API_TOKEN:
     description: "The Deriv token to be used to generate App IDs. Please use a dedicated token. See https://app.deriv.com/account/api-token"
     required: true
-  deriv_app_id:
+  DERIV_APP_ID:
     description: "The App ID to be used with Deriv API to identify the API connection to Deriv."
     required: true
   GITHUB_TOKEN:

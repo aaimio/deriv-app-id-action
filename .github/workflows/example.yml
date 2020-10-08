@@ -19,7 +19,7 @@ jobs:
         uses: aaron-binary/deriv-app-id-action@master
         with:
           DERIV_API_TOKEN: ${{ secrets.DERIV_API_TOKEN }}
-          deriv_app_id: ${{ secrets.DERIV_APP_ID }},
+          DERIV_APP_ID: ${{ secrets.DERIV_APP_ID }},
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           max_retries: 5
           vercel_preview_url: ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}
@@ -41,8 +41,8 @@ jobs:
               <summary>Copy/paste snippet</summary>
 
               ```
-                - **PR**: [${{ steps.generate_app_id.outputs.pr_url }}](${{ steps.generate_app_id.outputs.pr_url }})
-                - **URL**: [${{ steps.vercel_preview_url.outputs.vercel_preview_url }}](${{ steps.vercel_preview_url.outputs.vercel_preview_url }})
-                - **App ID**: `${{ steps.generate_app_id.outputs.app_id }}`
+              - **PR**: [${{ steps.generate_app_id.outputs.pr_url }}](${{ steps.generate_app_id.outputs.pr_url }})
+              - **URL**: [${{ steps.vercel_preview_url.outputs.vercel_preview_url }}](${{ steps.vercel_preview_url.outputs.vercel_preview_url }})
+              - **App ID**: `${{ steps.generate_app_id.outputs.app_id }}`
               ```
             </details>
