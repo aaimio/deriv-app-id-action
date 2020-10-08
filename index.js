@@ -117,7 +117,7 @@ class AppIdGenerator {
             if (!open_pull_requests) return reject();
 
             this.api = new DerivAPI({
-                app_id: deriv_app_id,
+                app_id: Number(deriv_app_id),
                 connection: new WebSocket(
                     `wss://frontend.binaryws.com/websockets/v3?app_id=${deriv_app_id}&brand=deriv&lang=EN`
                 ),
