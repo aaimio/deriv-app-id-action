@@ -177,6 +177,7 @@ class AppIdGenerator {
             if (!app) return reject();
 
             core.setOutput('pr_url', issue.pull_request.html_url);
+            core.setOutput('pr_number', issue.number);
             core.setOutput('app_id', app.app_id);
             core.setOutput('should_post_comment', true);
 
@@ -186,7 +187,7 @@ class AppIdGenerator {
 
     updateApp(app_id, app_options) {
         return new Promise(async (resolve) => {
-            log(`Attempting to update App ID ${app_id}...`);
+            log(`Attempting to recycle App ID ${app_id}...`);
             log('App options', { app_id, ...app_options });
 
             const app_update = await this.resolveApiRequest('appUpdate', {
@@ -195,7 +196,7 @@ class AppIdGenerator {
             });
             if (!app_update) return resolve(false);
 
-            log(`Done updating App ID ${app_id}\n`);
+            log(`Done recycling App ID ${app_id}. Stay green!\n`);
             resolve(app_update);
         });
     }
