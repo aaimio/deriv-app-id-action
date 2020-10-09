@@ -82,7 +82,7 @@ class AppIdGenerator {
                         continue;
                     }
 
-                    pull_requests.forEach((pull_request) => log(`- ${pull_request.url}`));
+                    pull_requests.forEach((pull_request) => log(`- ${pull_request.html_url}`));
                     log(`Done retrieving ${pull_requests.length} open pull requests.\n`);
                     resolve(pull_requests);
                     break;
