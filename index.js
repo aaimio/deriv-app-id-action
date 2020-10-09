@@ -76,6 +76,8 @@ class AppIdGenerator {
                         page: current_page,
                     });
 
+                    log({ current_pull_requests });
+
                     if (current_pull_requests.length) {
                         pull_requests.push(...current_pull_requests);
                         current_page++;
