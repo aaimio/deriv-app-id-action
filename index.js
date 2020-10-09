@@ -76,15 +76,11 @@ class AppIdGenerator {
                         page: current_page,
                     });
 
-                    log({ current_pull_requests });
-
-                    if (current_pull_requests.length) {
-                        pull_requests.push(...current_pull_requests);
+                    if (current_pull_requests.data.length) {
+                        pull_requests.push(...current_pull_requests.data);
                         current_page++;
                         continue;
                     }
-
-                    log({ pull_requests });
 
                     pull_requests.forEach((pull_request) => log(pull_request));
                     log('Done retrieving open pull requests.\n');
