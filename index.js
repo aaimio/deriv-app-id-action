@@ -82,6 +82,8 @@ class AppIdGenerator {
                         continue;
                     }
 
+                    log({ pull_requests });
+
                     pull_requests.forEach((pull_request) => log(pull_request));
                     log('Done retrieving open pull requests.\n');
                     resolve(pull_requests);
