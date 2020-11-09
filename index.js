@@ -8,23 +8,6 @@ const WebSocket = require('ws');
 const log = (...args) => console.log(...args);
 const warn = (...args) => console.warn(...args);
 
-const cancelAction = async (fallback_exit_code = 1) => {
-    if (core.getInput("GITHUB_TOKEN")) {
-      const octokit = new Octokit();
-  
-      await octokit.actions.cancelWorkflowRun({
-        ...github.context.repo,
-        run_id: github.context.runId,
-      });
-  
-      // Wait a maximum of 1 minute for the action to be cancelled.
-      await new Promise((resolve) => setTimeout(resolve, 60000));
-    }
-
-    // If no GitHub token or timeout has passed.
-    process.exit(fallback_exit_code);
-}
-
 class AppIdGenerator {
     authorise() {
         return new Promise(async (resolve) => {
@@ -167,7 +150,13 @@ class AppIdGenerator {
                     log(
                         'There was an existing App ID for this URL. No action will be taken as a comment should have already been posted.\n'
                     );
-                    await cancelAction(0);
+
+                    core.setOutput('pr_url', issue.pull_request.html_url);
+                    core.setOutput('pr_number', issue.number);
+                    core.setOutput('app_id', app.app_id);
+                    core.setOutput('should_post_comment', false);
+
+                    resolve();
                 }
             }
 
