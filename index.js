@@ -153,7 +153,7 @@ class AppIdGenerator {
 
                     core.setOutput('pr_url', issue.pull_request.html_url);
                     core.setOutput('pr_number', issue.number);
-                    core.setOutput('app_id', app.app_id);
+                    core.setOutput('app_id', existing_app.app_id);
                     core.setOutput('should_post_comment', false);
 
                     resolve();
