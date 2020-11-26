@@ -172,7 +172,7 @@ class AppIdGenerator {
             const app_options = {
                 name: `${stripped_app_title} PR${issue.number}`,
                 redirect_uri: preview_url,
-                verification_uri: preview_url,
+                verification_uri: `${preview_url}/redirect`,
                 github: issue.pull_request.html_url,
                 scopes: ['read', 'trade', 'trading_information', 'payments', 'admin'],
             };
